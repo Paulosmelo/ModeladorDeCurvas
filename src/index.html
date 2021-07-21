@@ -1,43 +1,34 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- Index CSS -->
     <link href="index.css" rel="stylesheet" type="text/css">
-
     <title>Modelador</title>
   </head>
   <body>
     <header>
-        <h1>Modelador de curvas</h1>
+        <h1 id="title">Modelador de curvas</h1>
     </header>
-
     <div class="container">
         <div class="row">
             <div class="col-3">
                 <div class="row">
                     <div class="card" style="width: 100%">
-                        <div class="card-header">
-                            Curvas
-                        </div>
+                        <div class="card-header">Curvas</div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%;">
-                                <button type="button" class="btn btn-danger">Delete</button>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-success">Add</button>
+                                <button id="btn-delete-curve" type="button" class="btn btn-danger">Delete</button>
+                                <button id="btn-edit-curve" type="button" class="btn btn-warning">Edit</button>
+                                <button id="btn-create-curve" type="button" class="btn btn-success">Add</button>
                               </div>
                           </li>
                           <li class="list-group-item">
                             <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">                                
-                                <button type="button" class="btn btn-outline-primary">prev</button>
-                                <button type="button" class="btn btn-outline-primary">next</button>
+                                <button id="btn-previous-curve" type="button" class="btn btn-outline-primary">previous</button>
+                                <button id="btn-next-curve" type="button" class="btn btn-outline-primary">next</button>
                               </div>
                           </li>
                         </ul>
@@ -45,21 +36,19 @@
                 </div>
                 <div class="row">
                     <div class="card" style="width: 100%;">
-                        <div class="card-header">
-                          Pontos
-                        </div>
+                        <div class="card-header">Pontos</div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%;">
-                                <button type="button" class="btn btn-danger">Delete</button>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-success">Add</button>
+                                <button id="btn-delete-point" type="button" class="btn btn-danger">Delete</button>
+                                <button id="btn-edit-point" type="button" class="btn btn-warning">Edit</button>
+                                <button id="btn-create-point" type="button" class="btn btn-success">Add</button>
                               </div>
                           </li>
                           <li class="list-group-item">
                             <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">                                
-                                <button type="button" class="btn btn-outline-primary">prev</button>
-                                <button type="button" class="btn btn-outline-primary">next</button>
+                                <button id="btn-previous-point" type="button" class="btn btn-outline-primary">previous</button>
+                                <button id="btn-next-point" type="button" class="btn btn-outline-primary">next</button>
                             </div>
                           </li>
                         </ul>
@@ -67,24 +56,22 @@
                 </div>    
                 <div class="row">
                     <div class="card" style="width: 100%;">
-                        <div class="card-header">
-                            Exibir
-                        </div>
+                        <div class="card-header">Exibir</div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item"> 
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" >
-                                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btncheck1">Curvas</label>
+                                <input type="checkbox" class="btn-check" id="btn-show-curves" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btn-show-curves">Curvas</label>
+
+                                <input type="checkbox" class="btn-check" id="btn-show-points" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btn-show-points">Pontos</label>
                             
-                                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btncheck2">Pontos</label>
-                            
-                                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btncheck3">Poligonos</label>
+                                <input type="checkbox" class="btn-check" id="btn-show-polygonal" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btn-show-polygonal">Poligonais</label>
                             </div>
                           </li>
                           <li class="list-group-item">
-                            <input type="text" class="form-control" placeholder="Numero de avaliações" style="width: 100%;">
+                            <input id="evaluations" type="text" class="form-control" placeholder="Numero de avaliações" style="width: 100%;">
                           </li>
                         </ul>
                       </div>       
@@ -92,23 +79,11 @@
             </div>
     
             <div class="col-9" >
-                <canvas>
-                    
-                </canvas>
+                <canvas id="canvas"></canvas>
             </div>
         </div>
     </div>
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
+    <script src="main.js"></script>
   </body>
 </html>
