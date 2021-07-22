@@ -25,6 +25,7 @@ function deCasteljau(points, t) {
 // Canvas
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
+const rect = canvas.getBoundingClientRect();
 
 // Curve Buttons
 const createNewCurveButton = document.getElementById('btn-create-curve')
@@ -134,7 +135,11 @@ function reDraw() {
 // canvas event listeners
 canvas.addEventListener('mousedown', function(event) {
     click = true
-    const pointA = new Point(event.offsetX, event.offsetY)
+    const elementRelativeX = event.clientX - rect.left;
+    const elementRelativeY = event.clientY - rect.top;
+    const canvasRelativeX = elementRelativeX * canvas.width / rect.width;
+    const canvasRelativeY = elementRelativeY * canvas.height / rect.height;
+    const pointA = new Point(canvasRelativeX, canvasRelativeY)
     if(canvasState === 1) {
         curves[selectedCurve].push(pointA)
     } else if(canvasState === 2) {
@@ -145,7 +150,11 @@ canvas.addEventListener('mousedown', function(event) {
 canvas.addEventListener('mousemove', function(event) {
     if(click) {
         if(canvasState === 2) {
-            const pointA = new Point(event.offsetX, event.offsetY)
+            const elementRelativeX = event.clientX - rect.left;
+            const elementRelativeY = event.clientY - rect.top;
+            const canvasRelativeX = elementRelativeX * canvas.width / rect.width;
+            const canvasRelativeY = elementRelativeY * canvas.height / rect.height;
+            const pointA = new Point(canvasRelativeX, canvasRelativeY)
             curves[selectedCurve].splice(selectedPoint[selectedCurve], 1, pointA)
         }
     }
