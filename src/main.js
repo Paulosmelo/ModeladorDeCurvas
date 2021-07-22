@@ -205,13 +205,15 @@ createNewPointButton.addEventListener('click', function(event) {
 deletePointButton.addEventListener('click', function(event) {
     if(curves[selectedCurve].length > 0) {
         curves[selectedCurve].splice(selectedPoint[selectedCurve], 1)
-        // selectedPoint.splice(selectedCurve, 1)
         if(curves[selectedCurve].length === 0) {
+            console.log('entrou aqui')
             curves.splice(selectedCurve, 1)
             selectedPoint.splice(selectedCurve, 1)
-            selectedCurve = -1
             if(selectedCurve > 0) {
                 selectedCurve--
+            }
+            if(curves.length === 0) {
+                selectedCurve = -1
             }
         }
         reDraw()
