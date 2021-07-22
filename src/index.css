@@ -31,7 +31,6 @@ h1 {
 }   
 
 canvas {
-    height: 80vh;
-    width: 100%;
+    display: block;
     background: #000;
 }
