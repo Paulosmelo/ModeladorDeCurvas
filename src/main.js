@@ -50,9 +50,10 @@ const evaluationsInput = document.getElementById('evaluations')
 const POINT_RADIUS = 2
 
 // Curves and points
-const curves = [];
+const curves = []
 var selectedCurve = -1
-var selectedPoint = [0]
+var selectedPoint = []
+selectedPoint.push(0)
 var evaluationsNumber = 100
 
 // Canvas status control
@@ -204,10 +205,11 @@ createNewPointButton.addEventListener('click', function(event) {
 deletePointButton.addEventListener('click', function(event) {
     if(curves[selectedCurve].length > 0) {
         curves[selectedCurve].splice(selectedPoint[selectedCurve], 1)
-        selectedPoint.splice(selectedCurve, 1)
+        // selectedPoint.splice(selectedCurve, 1)
         if(curves[selectedCurve].length === 0) {
             curves.splice(selectedCurve, 1)
             selectedPoint.splice(selectedCurve, 1)
+            selectedCurve = -1
             if(selectedCurve > 0) {
                 selectedCurve--
             }
