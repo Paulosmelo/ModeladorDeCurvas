@@ -30,7 +30,6 @@ const rect = canvas.getBoundingClientRect();
 // Curve Buttons
 const createNewCurveButton = document.getElementById('btn-create-curve')
 const deleteCurveButton = document.getElementById('btn-delete-curve')
-const editCurveButton = document.getElementById('btn-edit-curve')
 const nextCurveButton = document.getElementById('btn-next-curve')
 const previousCurveButton = document.getElementById('btn-previous-curve')
 
@@ -48,7 +47,7 @@ const checkBoxPoints = document.getElementById('btn-show-points')
 const evaluationsInput = document.getElementById('evaluations')
 
 // Aux variables
-const POINT_RADIUS = 4
+const POINT_RADIUS = 2
 
 // Curves and points
 const curves = [];
@@ -185,9 +184,8 @@ deleteCurveButton.addEventListener('click', function(event) {
         reDraw()
     } 
 })
-editCurveButton.addEventListener('click', function(event) {})
 nextCurveButton.addEventListener('click', function(event) {
-    if(selectedCurve < curves.length - 2) {
+    if(selectedCurve < curves.length - 1) {
         selectedCurve++
         reDraw()
     }
